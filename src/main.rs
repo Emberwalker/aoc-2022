@@ -1,9 +1,11 @@
-#![feature(trace_macros)]
+#![feature(type_alias_impl_trait)]
 
 use clap::{Parser, Subcommand};
 
 #[macro_use]
 extern crate log;
+#[macro_use]
+extern crate simple_error;
 
 pub type ErrWrapper<T> = Result<T, Box<dyn std::error::Error>>;
 pub type RootErr = Result<(), Box<dyn std::error::Error>>;
@@ -12,6 +14,7 @@ pub type RootErr = Result<(), Box<dyn std::error::Error>>;
 mod files;
 
 mod day1;
+mod day2;
 
 mod prelude {
     pub(crate) use crate::files;
@@ -19,13 +22,13 @@ mod prelude {
 }
 
 macro_rules! subcommands {
-    ( $( $name:ident, $args:ty, $fn:expr ),* ) => {
+    ( $( $name:ident, $args:ty, $fn:expr ),+ ) => {
         #[derive(Debug)]
         #[derive(Subcommand)]
         enum Subcommands {
             $(
                 // Command
-                $name($args)
+                $name($args),
             )*
         }
 
@@ -46,9 +49,11 @@ macro_rules! subcommands {
 
 // Add subcommands here!
 // Enum value name, Args type, fn(Args) -> ErrWrapper
-subcommands!(
-    Day1, day1::Args, day1::day1
-);
+subcommands![
+    Day1, day1::Args, day1::run,
+    Day2a, day2::Args, day2::run_a,
+    Day2b, day2::Args, day2::run_b
+];
 
 #[derive(Parser)]
 struct Cli {

@@ -9,3 +9,4 @@ edition = "2021"
 clap = { version = "4.0.29", features = ["derive", "cargo"] }
 env_logger = "0.10.0"
 log = { version = "0.4.17", features = ["std", "serde"] }
+simple-error = "0.2.3"

@@ -8,7 +8,7 @@ pub struct Args {
     file: std::path::PathBuf,
 }
 
-pub fn day1(args: Args) -> RootErr {
+pub fn run(args: Args) -> RootErr {
     debug!("Args: {:?}", args);
     let line_src = files::read_lines(args.file)?;
     let mut elves = sum_elves(line_src)?;
