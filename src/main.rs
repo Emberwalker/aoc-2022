@@ -15,6 +15,7 @@ mod files;
 
 mod day1;
 mod day2;
+mod day3;
 
 mod prelude {
     pub(crate) use crate::files;
@@ -52,7 +53,8 @@ macro_rules! subcommands {
 subcommands![
     Day1, day1::Args, day1::run,
     Day2a, day2::Args, day2::run_a,
-    Day2b, day2::Args, day2::run_b
+    Day2b, day2::Args, day2::run_b,
+    Day3, day3::Args, day3::run
 ];
 
 #[derive(Parser)]
