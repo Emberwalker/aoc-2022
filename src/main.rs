@@ -1,4 +1,6 @@
 #![feature(type_alias_impl_trait)]
+#![feature(int_roundings)]
+#![feature(iter_intersperse)]
 
 use clap::{Parser, Subcommand};
 
@@ -17,6 +19,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 mod prelude {
     pub(crate) use crate::files;
@@ -56,7 +59,9 @@ subcommands![
     Day2a, day2::Args, day2::run_a,
     Day2b, day2::Args, day2::run_b,
     Day3, day3::Args, day3::run,
-    Day4, day4::Args, day4::run
+    Day4, day4::Args, day4::run,
+    Day5a, day5::Args, day5::run_a,
+    Day5b, day5::Args, day5::run_b
 ];
 
 #[derive(Parser)]
